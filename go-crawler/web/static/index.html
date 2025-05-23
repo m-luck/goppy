@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goppy Web Crawler</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        .log-message {
+            padding: 0.5rem;
+            margin-bottom: 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.875rem;
+            line-height: 1.25rem;
+        }
+        .log-info {
+            background-color: #dbeafe;
+            color: #1e40af;
+        }
+        .log-success {
+            background-color: #dcfce7;
+            color: #166534;
+        }
+        .log-warning {
+            background-color: #fef9c3;
+            color: #854d0e;
+        }
+        .log-error {
+            background-color: #fee2e2;
+            color: #991b1b;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold text-center mb-8">Goppy Web Crawler</h1>
+        
+        <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="url">
+                    URL to Crawl
+                </label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+                       id="url" type="text" placeholder="https://example.com" value="https://example.com">
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                <div>
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="depth">
+                        Depth
+                    </label>
+                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+                           id="depth" type="number" min="1" max="10" value="2">
+                </div>
+                <div>
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="workers">
+                        Workers
+                    </label>
+                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+                           id="workers" type="number" min="1" max="20" value="5">
+                </div>
+                <div>
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="delay">
+                        Delay (ms)
+                    </label>
+                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+                           id="delay" type="number" min="0" value="100">
+                </div>
+            </div>
+            
+            <div class="flex justify-center">
+                <button id="startCrawl" 
+                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                    Start Crawl
+                </button>
+                <button id="stopCrawl" disabled
+                        class="ml-4 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline opacity-50 cursor-not-allowed">
+                    Stop
+                </button>
+            </div>
+        </div>
+        
+        <div class="bg-white rounded-lg shadow-md p-6">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-xl font-semibold">Results</h2>
+                <div class="text-sm text-gray-600 flex items-center">
+                    <span id="stats" class="mr-2">0 pages crawled</span>
+                    <span id="progressText" class="font-mono">0%</span>
+                </div>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-2.5 mb-4">
+                <div id="progressBar" class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
+            </div>
+            <div id="summary" class="mb-4">
+                <!-- Summary will appear here -->
+            </div>
+            <div id="results" class="font-mono text-sm bg-gray-100 p-4 rounded overflow-auto max-h-96">
+                <!-- Results will appear here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/main.js"></script>
+</body>
+</html>
